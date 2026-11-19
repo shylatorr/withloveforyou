@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖</title>
+    <link rel="shortcut icon" href="heart.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="../index.html" class="back-home-btn">← вернуться назад</a>
+
+    <!-- КНОПКА ВКЛЮЧЕНИЯ/ВЫКЛЮЧЕНИЯ ЗВУКА СЛЕВА СНИЗУ -->
+    <button id="mute-btn" style="
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 10001;
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease;
+    ">🔊</button>
+
+    <!-- Вставь эту строчку сюда: -->
+    <canvas id="hearts-canvas"></canvas>
+        <!-- ВСТАВЬ ЭТУ СТРОЧКУ СЮДА -->
+    <audio id="bg-music" src="spasi.mp3" loop></audio>
+
+    <div class="card" id="main-card">
+        <!-- Сюда можно вставить любую милую гифку -->
+        <div class="gif-container">
+            <!-- <img src="" alt="Cute bear"> -->
+        </div>
+        <h1>Скрасишь мой вечер <br><span>своей улыбкой?</span></h1>
+         <div class="btn-group">
+            <button id="yes-btn">Да, конечно!</button>
+            <button id="no-btn">Нет!!</button>
+        </div>
+
+        <!-- Перенеси строчку сюда (перед закрывающим div) -->
+        <p class="signature">Создано с любовью специально для моей Лилечки. Люблю тя шлюха моя 💖</p>
+
+    </div> <!-- Вот этот div (строка 28 у тебя) теперь закроет и карточку, и подпись -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <h2>Прекрасно! Значит, договорились? 🥰</h2>
+            <p>Напиши мне в 7 вечера, обсудим детали нашего маленького приключения! ✨</p>
+            <button id="close-btn">Закрыть</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

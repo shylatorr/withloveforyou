@@ -1,0 +1,670 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+:root {
+    --maindark: #161313;
+    --maingray: #808080;
+    --mainlight: #763b92;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.fourth {
+    position: absolute !important;
+    top: -35px !important; 
+    left: 20px !important;
+    width: 300px;
+    height: auto;
+    margin: 0 !important;
+    z-index: 101;
+}
+
+.main__header {
+    position: absolute !important;
+    top: -35px !important; 
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: auto !important; 
+    margin: 0 !important;
+    z-index: 100;
+}
+
+/* конт я и мы */
+.main__menu {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 40px !important; 
+    width: auto !important;
+}
+
+.main {
+    width: 100%;
+    margin-top: 90px !important; 
+}
+
+.main__about {
+    max-width: 800px;
+    margin-inline: auto;
+    width: 100%;
+}
+
+ul {
+    text-decoration: none;
+}
+
+.main__text {
+    text-align: top;
+    font-size: 20px;
+    color: var(--maindark);
+    line-height: 1.5;
+}
+
+/* отступы */
+.main__menu-item {
+    padding-top: 0 !important; 
+    padding-bottom: 2px; 
+    border-bottom: 2px solid transparent !important; 
+    transition: color 0.3s, border-bottom-color 0.3s;
+    display: inline-block;
+}
+
+a {
+    text-decoration: none;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 650;
+    font-size: 20px;
+    letter-spacing: -0.50px;
+    color: var(--maingray);
+}
+
+.main__menu-item.active {
+    color: var(--maindark);
+    border-bottom-color: var(--mainlight) !important; 
+}
+
+.main__menu-item:hover {
+    color: var(--maindark);
+    border-bottom-color: var(--mainlight) !important; 
+}
+
+/* --- стиль галлереи --- */
+.tab-content {
+    display: none !important; 
+    visibility: hidden;
+    opacity: 0;
+}
+
+.tab-content.active {
+    display: block !important;
+    visibility: visible;
+    opacity: 1;
+}
+
+.gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    width: 100%;
+    padding: 20px;
+}
+
+.gallery__item {
+    height: 465px;
+    perspective: 1000px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery__item:hover {
+    transform: translateY(-5px);
+}
+
+.gallery__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.gallery__item.flipped .gallery__inner {
+    transform: rotateY(180deg);
+}
+
+.gallery__front, .gallery__back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 15px 15px 25px 15px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery__item:hover .gallery__front,
+.gallery__item:hover .gallery__back {
+    box-shadow: 0 15px 35px rgba(118, 59, 146, 0.2); 
+}
+
+.gallery__front {
+    justify-content: space-between;
+}
+
+.gallery__front img {
+    width: 100%;
+    height: 380px; 
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.gallery__caption {
+    font-family: "DM Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--maindark);
+    text-align: center;
+}
+
+.gallery__back {
+    transform: rotateY(180deg);
+    background: rgba(255, 255, 255, 0.85);
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 25px 20px;
+}
+
+.gallery__back-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--mainlight);
+    margin-bottom: 10px;
+}
+
+.gallery__back-text {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--maindark);
+    overflow-y: auto;
+}
+
+.zoom-btn {
+    background-color: var(--maindark);
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    margin-top: 15px;
+}
+
+.zoom-btn:hover {
+    background-color: var(--mainlight);
+    transform: scale(1.05);
+}
+
+#photo-modal.active {
+    display: flex !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    transition: backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 24px;
+    text-align: center;
+    animation: scaleUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 10000;
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* --- гифка --- */
+.hearts-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    pointer-events: none; 
+    background-image: url('https://media1.tenor.com/m/EkfnvYcT57QAAAAC/code-geass.gif'); 
+    background-size: cover;        
+    background-position: center;   
+    background-repeat: no-repeat;  
+    opacity: 0.85; 
+}
+
+.main__footer {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-top: auto; 
+}
+
+.main__wrapper {
+    display: block !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- карточка письма на вкладке немного --- */
+.letter-card {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    padding: 40px 45px;
+    margin: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.letter-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--maindark);
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.letter-text {
+    margin-bottom: 18px;
+}
+
+.letter-signature {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(22, 19, 25, 0.12);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--mainlight);
+    text-align: right;
+}
+
+/* --- интерактивный блок на вкладке если --- */
+.miss-card {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    padding: 40px 35px;
+    margin: 40px 20px 20px 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.miss-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--maindark);
+    margin-bottom: 25px;
+}
+
+.miss-box {
+    min-height: 110px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    padding: 20px 25px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.miss-phrase {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--maindark);
+    font-weight: 500;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.miss-phrase.fade-out {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+.miss-btn {
+    background-color: var(--maindark);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(22, 19, 25, 0.2);
+    transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.miss-btn:hover {
+    background-color: var(--mainlight);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(118, 59, 146, 0.35);
+}
+
+.miss-btn:active {
+    transform: scale(0.96);
+}
+
+/* --- лесенка вкладок: "если" -> "немного" -> "Я Мы" --- */
+.main__header {
+    top: -35px !important;
+    z-index: 999 !important;
+    position: absolute !important;
+}
+
+.main__header .main__menu:nth-child(1) {
+    position: absolute !important;
+    top: -54px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    white-space: nowrap;
+}
+
+.main__header .main__menu:nth-child(2) {
+    position: absolute !important;
+    top: -27px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    white-space: nowrap;
+}
+
+.gallery__front {
+    z-index: 2;
+    pointer-events: auto;
+}
+
+.gallery__item.flipped .gallery__front {
+    pointer-events: none;
+}
+
+.gallery__back {
+    z-index: 1;
+    pointer-events: none;
+}
+
+.gallery__item.flipped .gallery__back {
+    z-index: 3;
+    pointer-events: auto;
+}
+
+.zoom-btn {
+    position: relative;
+    z-index: 10;
+}
+
+#photo-modal.active {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 999999 !important;
+}
+
+#photo-modal.active .modal-content {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: scale(1) !important;
+    z-index: 1000000 !important;
+}
+
+.main__menu-item {
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7) !important;
+    border-radius: 50px !important;
+    padding: 6px 22px !important; /* сделали чуть больше */
+    font-size: 16px !important; /* увеличили текст */
+    font-weight: 700 !important; /* сделали пожирнее */
+    line-height: 1.2 !important;
+    color: var(--maindark) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.25s ease !important;
+}
+
+.main__menu-item:hover {
+    background: rgba(255, 255, 255, 0.88) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(118, 59, 146, 0.25) !important;
+}
+
+.main__menu-item.active {
+    background: var(--mainlight) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    box-shadow: 0 6px 18px rgba(118, 59, 146, 0.45) !important;
+}
+
+/* Опускаем всю пирамидку ниже и даем зазоры под новый размер кнопок */
+.main__header {
+    top: -10px !important; /* опустили пониже от верхнего края */
+    z-index: 999 !important;
+    position: absolute !important;
+}
+
+.main__header .main__menu:nth-child(1) {
+    position: absolute !important;
+    top: -78px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    white-space: nowrap;
+}
+
+.main__header .main__menu:nth-child(2) {
+    position: absolute !important;
+    top: -39px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    white-space: nowrap;
+}
+
+.main__header .main__menu:nth-child(3) {
+    gap: 16px !important;
+}
+
+.main {
+    margin-top: 105px !important;
+    padding-top: 18px !important; /* уменьшаем зазор между кнопками и карточками */
+} 
+
+.miss-card {
+    margin-top: 10px !important;
+}
+
+.fourth {
+    top: -75px !important; /* приподнимаем логотип выше */
+}
+
+.diary-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px 20px 30px 20px;
+}
+
+.diary-card, .moodboard-card {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 22px;
+    padding: 25px 30px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.diary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.diary-tag {
+    background: var(--mainlight);
+    color: #fff;
+    padding: 3px 12px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.diary-date {
+    color: var(--maingray);
+    font-weight: 500;
+}
+
+.diary-text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--maindark);
+}
+
+/* Мудборд */
+.moodboard-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--maindark);
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.moodboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.mood-item {
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 16px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: transform 0.25s ease;
+}
+
+.mood-item:hover {
+    transform: translateY(-4px);
+}
+
+.mood-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 8px;
+}
+
+.mood-item span {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--maindark);
+}
+
+.mood-item:nth-child(5) {
+    grid-column: 1 / -1;
+}
+
+/* Увеличиваем размер фоток в цитатах/мудборде */
+.mood-item img {
+    height: 360px !important; /* можешь поставить 320px или 400px по вкусу */
+    object-fit: cover !important;
+}
+
+.mood-item:nth-child(5) img {
+    height: 600px !important; /* можешь поставить 550px или 650px по вкусу */
+    object-fit: cover !important;
+}
+
+.part2-wrapper {
+    text-align: center;
+    margin-top: -5px; /* приподнимаем кнопку ближе к карточке письма */
+    margin-bottom: 30px;
+}
+
+.part2-btn {
+    display: inline-block;
+    background-color: var(--mainlight);
+    color: #ffffff !important;
+    padding: 12px 26px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(118, 59, 146, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.part2-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(118, 59, 146, 0.5);
+}
